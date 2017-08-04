@@ -1,0 +1,72 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+    font-family: "Arial", sans-serif;
+}
+
+body {
+    background: #222;
+    color: white;
+    display: flex;
+}
+
+
+#inputPanel {
+    display: table;
+    margin: 10px auto;
+    max-width: 400px;
+}
+
+#inputPanel div {
+    display: table-row;
+
+}
+#inputPanel .cell {
+    display: table-cell;
+    padding: 2px 5px;
+}
+
+#inputPanel select {
+    width: 100%;
+}
+
+#resultPanel {
+    width: calc(100% - 400px);
+    padding: 20px;
+}
+
+#resultPanel table {
+    border: 1px solid #3e3e3e;
+    text-align: center;
+    background: #2b2b2b;  
+    table-layout: fixed;
+    width: 100%;
+}
+
+#resultPanel thead {
+    border-bottom: 1px solid white;
+    background-color: white;
+    color: #222222;
+    border-collapse: collapse;
+}
+
+#resultPanel th, td {
+    padding: 10px;
+}
+
+#resultPanel thead th {
+    text-transform: uppercase;
+    max-width: 160px;
+    overflow: hidden;
+}
+
+#resultPanel tbody tr {
+    font-size: 0.8em;
+}
+
+#resultPanel tbody tr:nth-child(2n) {
+    background: #3e3e3e;
+}  
+
+#resultPanel .calc-options {
+    margin-bottom: 10px;
+}

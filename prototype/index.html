@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+
+<div id="inputPanel">
+    <div>
+        <h2>Person</h2>
+    </div>
+    <div>
+        <div class="cell">Gender</div>
+        <div class="cell">
+            <label for="male">Male</label>
+            <input id="male" type="radio" name="gender" value="1" data-bind="checked: gender">
+            <label for="female">Female</label>
+            <input id="female" type="radio" name="gender" value="2" data-bind="checked: gender">
+        </div>
+    </div>
+    <div>
+        <div class="cell"><label for="age">Age</label></div>
+        <div class="cell"><input id="age" data-bind="value: age"></div>
+    </div>
+    <div>
+        <div class="cell"><label for="height">Height</label></div>
+        <div class="cell"><input id="height" data-bind="value: height"></div>
+    </div>
+    <div>
+        <div class="cell">
+            <label for="weight">Start weight</label>
+        </div>
+        <div class="cell">
+            <input id="weight" data-bind="value: weight">
+        </div>
+    </div>
+    <div>
+        <div class="cell">
+            <label for="goalWeight">Goal weight</label>
+        </div>
+        <div class="cell">
+            <input id="goalWeight" data-bind="value: goalWeight"></div>
+    </div>
+    <div>
+        <div class="cell">
+            <label for="weeklyWeightLoss">Weekly weight loss</label>
+        </div>
+        <div class="cell">
+            <input id="weeklyWeightLoss" data-bind="value: weeklyWeightLoss">
+        </div>
+    </div>
+    <div>
+        <div class="cell">
+            <label for="activityLevel">Activity level</label>
+        </div>
+        <div class="cell">
+            <select id="activityLevel"
+                    data-bind="options: activityLevels, value: activityLevel, optionsValue: 'value', optionsText: 'text'"></select>
+        </div>
+    </div>
+    <div>
+        <h2>Macros</h2>
+    </div>
+    <div>
+        <div class="cell">
+            <label for="macroPresets">Presets</label>
+        </div>
+        <div class="cell">
+            <select id="macroPresets" data-bind="options: macroPresets, optionsText: 'text', optionsCaption: 'Preset',value: selectedMacroPreset"></select>
+        </div>
+    </div>
+    <div>
+        <div class="cell">
+            <label for="fat">Fat (%)</label>
+        </div>
+        <div class="cell">
+            <input id="fat" data-bind="value: fat">
+        </div>
+    </div>
+    <div>
+        <div class="cell">
+            <label for="carbs">Carbs (%)</label>
+        </div>
+        <div class="cell">
+            <input id="carbs" data-bind="value: carbs">
+        </div>
+    </div>
+    <div>
+        <div class="cell">
+            <label for="protein">Protein (%)</label>
+        </div>
+        <div class="cell">
+            <input id="protein" data-bind="value: protein">
+        </div>
+    </div>
+    <div>
+        <div class="cell"></div>
+        <div class="cell">
+            <button id="btnCalculate" data-bind="click: calculate">Calculate</button>
+        </div>
+    </div>
+</div>
+
+<div id="resultPanel">
+    <div class="calc-options">
+        <label for="calculationOptions">Change view</label>
+        <select id="calculationOptions" data-bind="options: calculationOptions, optionsText: 'text', optionsValue: 'value', value: selectedcalculationOptions"></select>
+    </div>
+    <table id="result">
+        <thead>
+        <tr>
+            <th data-bind="text: periodHeading">Day</th>
+            <th>Weight (+/-)</th>
+            <th>Cal for maintain</th>
+            <th>Cal for weight difference</th>
+            <th>Cal deficit</th>
+            <th>Fat</th>
+            <th>Carbs</th>
+            <th>Protein</th>
+        </tr>
+        </thead>
+        <tbody data-bind="foreach: days">
+        <tr>
+            <td data-bind="text: $index" style="font-style: italic; font-weight: bold"></td>
+            <td data-bind="text: weight"></td>
+            <td data-bind="text: calMaintenance"></td>
+            <td data-bind="text: calForWeightDifference"></td>
+            <td data-bind="text: calDeficitOrAbundance"></td>
+            <td data-bind="text: fat"></td>
+            <td data-bind="text: carbs"></td>
+            <td data-bind="text: protein"></td>
+        </tr>
+        </tbody>
+    </table>
+        
+</div>
+
+<script src="knockout-3.4.2.debug.js"></script>
+<script src="enums.js"></script>
+<script src="viewmodel.js"></script>
+<script src="calculator.js"></script>
+<script>
+    // elements
+    let startWeight = document.getElementById("startWeight"),
+        goalWeight = document.getElementById("goalWeight"),
+        weeklyWeightLoss = document.getElementById("weeklyWeightLoss"),
+        btnCalculate = document.getElementById("btnCalculate");
+
+    let viewModel = new stho.ViewModel();
+    ko.applyBindings(viewModel, document.body);
+    viewModel.calculate(viewModel);
+</script>
+
+</body>
+</html>
